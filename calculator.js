@@ -2,6 +2,8 @@ var screenText = document.getElementById("screen-text");
 var numberButtons = document.getElementsByClassName("number");
 var clearButton = document.getElementById("clear");
 var operationsButtons = document.getElementsByClassName("operation");
+var equalsButton = document.getElementById("equals");
+
 var readyClear = {
     num: false,
     operation: false
@@ -77,4 +79,20 @@ Array.from(operationsButtons).forEach(operationsButton => {
         readyClear.operation = true;
         console.log(operationsArr);
     })
+})
+
+equalsButton.addEventListener("click", function () {
+    operationsArr.push({
+        num: parseInt(screenText.innerText),
+        operation: "equals"
+    });
+
+    console.log(operationsArr)
+
+    screenText.innerText = operationsArr.reduce((result, current) => {
+        result = operationMath(result, current)
+        result.operation = current.operation;
+        return result;
+    }).num
+    operationsArr = []
 })
