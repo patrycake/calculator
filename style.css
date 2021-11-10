@@ -23,12 +23,7 @@ body {
     font-family: 'Zen Kaku Gothic Antique', sans-serif;
 }
 
-.operation, #equals{
-    background-color: #f9957f65;
-}
-button.operation:hover, #equals:hover{
-    background-color: #a565568f;
-}
+
 
 button.item {
     border: 1px solid rgb(0, 0, 0, 0.5)
@@ -36,6 +31,14 @@ button.item {
 
 button.item:hover {
     background-color: rgb(0, 0, 0, 0.5);
+}
+
+.operation, #equals{
+    background-color: #f9957f65;
+}
+
+button.operation:hover, #equals:hover{
+    background-color: #a565568f;
 }
 
 #screen {
