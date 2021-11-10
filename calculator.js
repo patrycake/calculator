@@ -53,7 +53,13 @@ Array.from(numberButtons).forEach(numberButton => {
 })
 
 clearButton.addEventListener("click", function () {
-    screenText.innerText = "";
+    if (this.innerText == "Clear Screen") {
+        screenText.innerText = "";
+        clearButton.innerText = "All Clear"
+    } else {
+        operationsArr = []
+    }
+    console.log(operationsArr)
 })
 
 Array.from(operationsButtons).forEach(operationsButton => {
