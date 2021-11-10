@@ -2,6 +2,10 @@ var screenText = document.getElementById("screen-text");
 var numberButtons = document.getElementsByClassName("number");
 var clearButton = document.getElementById("clear");
 var operationsButtons = document.getElementsByClassName("operation");
+var readyClear = {
+    num: false,
+    operation: false
+}
 
 var operationsArr = [];
 
@@ -37,8 +41,14 @@ function operationMath(result, current){
 Array.from(numberButtons).forEach(numberButton => {
     numberButton.addEventListener("click", function () {
         console.log(numberButton.innerText)
+        if (readyClear.operation && readyClear.num) {
+            screenText.innerText = "";
+            readyClear.num = false;
+            readyClear.operation = false;
+        }
         screenText.innerText += stringNumToInt(numberButton.id);
-
+        clearButton.innerText = "Clear Screen"
+        readyClear.num = true;
     })
 })
 
@@ -48,22 +58,17 @@ clearButton.addEventListener("click", function () {
 
 Array.from(operationsButtons).forEach(operationsButton => {
     operationsButton.addEventListener("click", function () {
-        console.log(operationsArr.length);
         operationsArr.push({
             num: parseInt(screenText.innerText),
             operation: operationsButton.id
         });
-        console.log(JSON.parse(JSON.stringify(operationsArr)));
         if(operationsArr.length == 2){
-            screenText.innerText = "";
             operationsArr[0] = operationMath(operationsArr[0], operationsArr[1])
             operationsArr[0].operation = operationsArr[1].operation;
             operationsArr.pop();
             screenText.innerText = operationsArr[0].num;
         }
-        else {
-            screenText.innerText = "";
-        }
-        
+        readyClear.operation = true;
+        console.log(operationsArr);
     })
 })
