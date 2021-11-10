@@ -3,6 +3,7 @@ var numberButtons = document.getElementsByClassName("number");
 var clearButton = document.getElementById("clear");
 var operationsButtons = document.getElementsByClassName("operation");
 var equalsButton = document.getElementById("equals");
+var decimalButton = document.getElementById("decimal")
 
 var readyClear = {
     num: false,
@@ -67,7 +68,7 @@ clearButton.addEventListener("click", function () {
 Array.from(operationsButtons).forEach(operationsButton => {
     operationsButton.addEventListener("click", function () {
         operationsArr.push({
-            num: parseInt(screenText.innerText),
+            num: parseFloat(screenText.innerText),
             operation: operationsButton.id
         });
         if(operationsArr.length == 2){
@@ -83,7 +84,7 @@ Array.from(operationsButtons).forEach(operationsButton => {
 
 equalsButton.addEventListener("click", function () {
     operationsArr.push({
-        num: parseInt(screenText.innerText),
+        num: parseFloat(screenText.innerText),
         operation: "equals"
     });
 
@@ -95,4 +96,8 @@ equalsButton.addEventListener("click", function () {
         return result;
     }).num
     operationsArr = []
+})
+
+decimalButton.addEventListener("click", function() {
+    screenText.innerText += ".";
 })
